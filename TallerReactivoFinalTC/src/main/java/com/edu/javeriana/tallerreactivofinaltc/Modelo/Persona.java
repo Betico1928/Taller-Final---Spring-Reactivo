@@ -1,4 +1,4 @@
-package com.edu.javeriana.tallerreactivofinaltc.modelos;
+package com.edu.javeriana.tallerreactivofinaltc.Modelo;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
