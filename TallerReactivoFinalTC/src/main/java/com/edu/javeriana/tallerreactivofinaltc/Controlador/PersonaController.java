@@ -1,5 +1,7 @@
 package com.edu.javeriana.tallerreactivofinaltc.Controlador;
 
+import com.edu.javeriana.tallerreactivofinaltc.DTO.NotaEstudianteDTO;
+import com.edu.javeriana.tallerreactivofinaltc.Modelo.Nota;
 import com.edu.javeriana.tallerreactivofinaltc.Modelo.Persona;
 import com.edu.javeriana.tallerreactivofinaltc.Repositorio.PersonaRepository;
 import org.springframework.web.bind.annotation.*;
@@ -37,6 +39,17 @@ public class PersonaController
         return personaRepository.findById(id);
     }
 
+    @GetMapping("/estudiante/{id}")
+    public Flux<Nota> obtenerEstudiantePorId(@PathVariable Integer id)
+    {
+        return personaRepository.findStudentById(id);
+    }
+
+
+
+
+
+
     @PutMapping("/{id}")
     public Mono<Persona> actualizarPersona(@PathVariable Integer id, @RequestBody Persona persona)
     {
@@ -61,5 +74,13 @@ public class PersonaController
     {
         return personaRepository.findAllStudents().limitRate(LIMIT_RATE);
     }
+
+    @GetMapping("/estudiante/{estudianteId}/{materiaId}/notas")
+    public Flux<NotaEstudianteDTO> obtenerNotasEstudiantePorMateria(@PathVariable int estudianteId, @PathVariable int materiaId) {
+        return personaRepository.findByEstudianteIdAndMateriaId(estudianteId, materiaId);
+
+    }
+
+
 }
 
